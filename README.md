@@ -592,6 +592,47 @@ aiologger whether it should emit a log to `stderr` in case of a handler emit
 raises an exceptions. To disable the default behaviour, set this
 environment variable to a falsy value `("False", "false", "0")`. Default: `True`
 
+# Colored Logs
+
+```py
+import asyncio
+
+import colorlog
+from aiologger import Logger
+
+format_ = "%(asctime)s %(log_color)s%(levelname)-8s%(reset)s %(cyan)s(%(module)s-%(funcName)s:%(lineno)d) %(bold_white)s>>%(reset)s %(message)s"
+f = colorlog.ColoredFormatter(format_)
+
+
+async def main():
+    logger = Logger.with_default_handlers(name='my-logger', formatter=f)
+    logger.info("colored logs")
+    await asyncio.sleep(1)
+
+
+asyncio.run(main())
+```
+
+or lazy loaded:
+
+```py
+import asyncio
+
+import colorlog
+from aiologger import Logger
+
+format_ = "%(asctime)s %(log_color)s%(levelname)-8s%(reset)s %(cyan)s(%(module)s-%(funcName)s:%(lineno)d) %(bold_white)s>>%(reset)s %(message)s"
+f = colorlog.ColoredFormatter(format_)
+
+logger = Logger.with_default_handlers(name='my-logger', formatter=f)
+
+async def main():
+    await logger.info("colored logs")
+
+
+asyncio.run(main())
+```
+
 # Compatibility
 
 Currently tested only on python 3.6 and 3.7

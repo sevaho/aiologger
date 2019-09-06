@@ -594,6 +594,8 @@ environment variable to a falsy value `("False", "false", "0")`. Default: `True`
 
 # Colored Logs
 
+> if you want colored logs, you need ```colorlog``` dependency, install with ```pip install colorlog```
+
 ```py
 import asyncio
 

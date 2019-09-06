@@ -112,7 +112,7 @@ class LogRecord:
 
     def getMessage(self):
         """
-        backwards compatibility python3.7/logging/__init__.py", line 608
+        backwards compatibility for python builtin logger ref. python3.7/logging/__init__.py", line 608
         """
         return self.get_message()
 

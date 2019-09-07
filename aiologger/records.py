@@ -68,7 +68,10 @@ class LogRecord:
         self.args: Optional[Mapping]
         if args:
             if len(args) != 1 or not isinstance(args[0], Mapping):
-                raise ValueError(f"Invalid LogRecord args type: {type(args[0])}. " f"Expected Mapping")
+                raise ValueError(
+                    f"Invalid LogRecord args type: {type(args[0])}. "
+                    f"Expected Mapping"
+                )
             self.args: Optional[Mapping] = args[0]
         else:
             self.args = args
@@ -131,7 +134,9 @@ class ExtendedLogRecord(LogRecord):
         sinfo: Optional[str] = None,
         **kwargs,
     ) -> None:
-        super().__init__(name, level, pathname, lineno, msg, args, exc_info, func, sinfo)
+        super().__init__(
+            name, level, pathname, lineno, msg, args, exc_info, func, sinfo
+        )
         self.extra = kwargs["extra"]
         self.flatten = kwargs["flatten"]
         self.serializer_kwargs = kwargs["serializer_kwargs"]
